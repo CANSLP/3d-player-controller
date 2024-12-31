@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://ck20lo6qtnxob"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_mviub"]
+[ext_resource type="AudioStream" uid="uid://cwsx2j87d00st" path="res://assets/audio/click_in.wav" id="2_6ica1"]
+[ext_resource type="AudioStream" uid="uid://b1ety7t5jdupc" path="res://assets/audio/click_out.wav" id="3_uo46e"]
+[ext_resource type="AudioStream" uid="uid://5q7kq4pb6h76" path="res://assets/audio/jump.wav" id="4_wx4v1"]
+[ext_resource type="AudioStream" uid="uid://dd0gckeum8di1" path="res://assets/audio/land.wav" id="5_ffxvb"]
+[ext_resource type="AudioStream" uid="uid://heriym2lkf43" path="res://assets/audio/thud.wav" id="6_h1u7j"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d2qhc"]
+friction = 0.0
+absorbent = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n54e4"]
+
+[node name="player" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_d2qhc")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 8
+script = ExtResource("1_mviub")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_n54e4")
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="hand" type="Node3D" parent="camera"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0.5, -0.25, -0.5)
+
+[node name="audio" type="Node" parent="."]
+
+[node name="sfx_click_in" type="AudioStreamPlayer2D" parent="audio"]
+stream = ExtResource("2_6ica1")
+volume_db = 5.0
+
+[node name="sfx_click_out" type="AudioStreamPlayer2D" parent="audio"]
+stream = ExtResource("3_uo46e")
+volume_db = 5.0
+
+[node name="sfx_jump" type="AudioStreamPlayer2D" parent="audio"]
+stream = ExtResource("4_wx4v1")
+
+[node name="sfx_land_1" type="AudioStreamPlayer2D" parent="audio"]
+stream = ExtResource("5_ffxvb")
+
+[node name="sfx_land_2" type="AudioStreamPlayer2D" parent="audio"]
+stream = ExtResource("6_h1u7j")
