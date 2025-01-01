@@ -5,5 +5,5 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_01fje")
-shader_parameter/color_base = Vector3(0.25, 0.3, 0.3)
-shader_parameter/color_line = Vector3(0.2, 0.25, 0.25)
+shader_parameter/color_base = Color(0.435, 0.5, 0.5, 1)
+shader_parameter/color_line = Color(0.36, 0.45, 0.45, 1)

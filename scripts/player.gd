@@ -42,6 +42,7 @@ var last_pos : Vector3
 var save_vel : Vector3
 
 @onready var hand : Node3D = $camera/hand
+var item : HandItem
 
 @onready var db_land_1 = $audio/sfx_land_1.volume_db
 @onready var db_land_2 = $audio/sfx_land_2.volume_db
@@ -102,11 +103,11 @@ func _process(delta):
 	
 	#animation
 	$camera.position.y += sin(time*bob_speed)*bob_amt*head_bob
-	hand.position.y = -0.25+sin(time*bob_speed)*bob_amt*hand_bob
+	hand.position.y = -0.4+sin(time*bob_speed)*bob_amt*hand_bob
 	if hand_side:
-		hand.position.x = lerp(hand.position.x,0.5,delta*20)
+		hand.position.x = lerp(hand.position.x,0.8,delta*20)
 	else:
-		hand.position.x = lerp(hand.position.x,-0.5,delta*20)
+		hand.position.x = lerp(hand.position.x,-0.8,delta*20)
 
 
 #physics
@@ -186,11 +187,23 @@ func get_ground(state):
 
 func click():
 	$audio/sfx_click_in.play()
+	if item:
+		item.use()
 	if target:
 		target._clicked(self)
 
 func unclick():
 	$audio/sfx_click_out.play()
+
+func set_hand(item : HandItem, node : Node3D):
+	if !self.item:
+		self.item = item
+		node.reparent(hand)
+		node.position = Vector3(0,0,0)
+		node.rotation = Vector3(0,0,0)
+		return true
+	else:
+		return false
 
 func get_target():
 	if target:
@@ -205,6 +218,9 @@ func get_target():
 		if obj is Interactable:
 			target = collision.collider.get_parent()
 			target._target(self)
+
+func look_direction():
+	return -$camera.global_basis.z
 
 #get inputs
 func _input(event):

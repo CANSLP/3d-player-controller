@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://chtuxcg7wuadn"]
+[gd_scene load_steps=10 format=3 uid="uid://chtuxcg7wuadn"]
 
 [ext_resource type="Material" uid="uid://ddypinr0fnnqq" path="res://assets/materials/test_material.tres" id="1_kbwws"]
 [ext_resource type="PackedScene" uid="uid://b2wynepoopj4y" path="res://classes/interaction_orb.tscn" id="2_b5laf"]
 [ext_resource type="PackedScene" uid="uid://ck20lo6qtnxob" path="res://classes/player.tscn" id="3_0qv8d"]
+[ext_resource type="PackedScene" uid="uid://dl04agvfx4mhl" path="res://classes/test_item.tscn" id="4_ton4o"]
 
 [sub_resource type="Environment" id="Environment_ky6rn"]
 background_mode = 1
@@ -209,6 +210,17 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="geometry/MeshInstance3D7/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_w6yx5")
 
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19035e-07, 0.5, 3)
+material_override = ExtResource("1_kbwws")
+mesh = SubResource("BoxMesh_oditj")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="geometry/MeshInstance3D20"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="geometry/MeshInstance3D20/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_w6yx5")
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="geometry"]
 transform = Transform3D(-2.56066, 0.43934, -1.5, 1.5, 1.5, -2.12132, 0.43934, -2.56066, -1.5, -6, 0, -6)
 material_override = ExtResource("1_kbwws")
@@ -249,5 +261,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -9)
 
 [node name="InteractionOrb2" parent="props" instance=ExtResource("2_b5laf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 21)
+
+[node name="item" parent="props" instance=ExtResource("4_ton4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0202655, 1.2, 2.97923)
+
+[node name="item2" parent="props" instance=ExtResource("4_ton4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0202655, 0.2, 13.9792)
+
+[node name="item3" parent="props" instance=ExtResource("4_ton4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02, 7.7, 13.979)
+
+[node name="item4" parent="props" instance=ExtResource("4_ton4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.98, 8.7, 26.979)
 
 [node name="player" parent="." instance=ExtResource("3_0qv8d")]

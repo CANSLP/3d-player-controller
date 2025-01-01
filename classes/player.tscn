@@ -15,6 +15,7 @@ absorbent = true
 
 [node name="player" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -31,7 +32,7 @@ shape = SubResource("CapsuleShape3D_n54e4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="hand" type="Node3D" parent="camera"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0.5, -0.25, -0.5)
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0.8, -0.4, -0.8)
 
 [node name="audio" type="Node" parent="."]
 

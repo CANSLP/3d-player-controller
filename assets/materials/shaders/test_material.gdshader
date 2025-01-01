@@ -1,6 +1,6 @@
 shader_type spatial;
-uniform vec3 color_base;
-uniform vec3 color_line;
+uniform vec3 color_base : source_color;
+uniform vec3 color_line : source_color;
 
 vec3 transform(vec3 i,mat4 m){
 	vec4 o = m * vec4(i.x,i.y,i.z,0);
@@ -8,7 +8,7 @@ vec3 transform(vec3 i,mat4 m){
 }
 
 void vertex() {
-	
+
 }
 
 void fragment() {
@@ -36,7 +36,7 @@ void fragment() {
 	if(abs(norm.z)<0.975&&abs(mod(frag.z+0.125,0.25))<0.05){
 		line = false;
 	}
-	
+
 	if(line){
 		ALBEDO = color_line;
 	} else {
