@@ -188,8 +188,10 @@ func get_ground(state):
 func click():
 	$audio/sfx_click_in.play()
 	if item:
+		if !item.lock_interact:
+			target._clicked(self)
 		item.use()
-	if target:
+	elif target:
 		target._clicked(self)
 
 func unclick():

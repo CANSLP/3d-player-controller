@@ -27,6 +27,7 @@ shape = SubResource("CylinderShape3D_87o4n")
 
 [node name="item" type="Node3D" parent="."]
 script = ExtResource("1_scbyj")
+lock_interact = true
 
 [node name="Area3D" type="Area3D" parent="item"]
 

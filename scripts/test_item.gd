@@ -6,6 +6,7 @@ var holder : Player
 @onready var body = get_parent()
 @onready var collision = body.get_node("collision")
 @onready var container : Node3D = body.get_parent()
+@export var lock_interact : bool
 
 func grab(player : Player):
 	body.sleeping = true
