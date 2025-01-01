@@ -119,7 +119,11 @@ func _integrate_forces(state):
 	var walk_vector = Vector2(0,0)
 	if has_focus:
 		if can_run && kRUN && on_ground && crouch < 0.5:
+			if !running:
+				$audio/sfx_land_1.volume_db = db_land_1-10.0
+				$audio/sfx_land_1.play()
 			running = true
+		
 		#digital walk
 		if(kFORWARD):
 			walk_vector += Vector2(0,-1)
@@ -146,7 +150,8 @@ func _integrate_forces(state):
 		if can_jump && kJUMP:
 			if(on_ground && crouch < 0.5):
 				state.linear_velocity.y = jump_power
-				$audio/sfx_jump.play()
+				if !$audio/sfx_jump.playing or $audio/sfx_jump.get_playback_position() > 0.1:
+					$audio/sfx_jump.play()
 	else:
 		running = false
 	
